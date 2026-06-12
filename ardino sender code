@@ -1,0 +1,23 @@
+#include <SPI.h>
+#include <LoRa.h>
+
+void setup() {
+  Serial.begin(9600);
+
+  if (!LoRa.begin(433E6)) {
+    Serial.println("LoRa initialization failed");
+    while (1);
+  }
+
+  Serial.println("LoRa initialized successfully");
+}
+
+void loop() {
+  LoRa.beginPacket();
+  LoRa.print("Hello Soldier");
+  LoRa.endPacket();
+
+  Serial.println("Message Sent");
+
+  delay(2000);
+}
